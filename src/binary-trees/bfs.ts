@@ -40,3 +40,23 @@ const tree = new INode(1,
     new INode(4, null, null), null));
 
 breadthFirstTraversal(tree, console.log);
+
+function traverseBFS(root) {
+  const queue = [root];
+  const res = [];
+
+  while (queue.length) {
+    const curr = queue.shift();
+    res.push(curr.key);
+
+    if (curr.right) {
+      queue.push(curr.right);
+    }
+
+    if (curr.left) {
+      queue.push(curr.left);
+    }
+  }
+
+  return res;
+}

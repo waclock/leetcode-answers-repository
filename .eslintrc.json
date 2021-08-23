@@ -48,7 +48,6 @@
       2,
       "property"
     ],
-    "guard-for-in": 2,
     "no-alert": 1,
     "no-case-declarations": 2,
     "no-div-regex": 0,
@@ -336,6 +335,10 @@
         "afterColon": true
       }
     ],
+    "@typescript-eslint/type-annotation-spacing": ["error", {
+      "before": false,
+      "after": true
+  }],
     "keyword-spacing": [
       2,
       {
@@ -422,7 +425,6 @@
     "no-restricted-syntax": [
       2,
       "DebuggerStatement",
-      "ForInStatement",
       "LabeledStatement",
       "WithStatement"
     ],

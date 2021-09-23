@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    @media(max-width: 750px){
+      li{
+        background-color: red;
+      }
+    }
+  </style>
+<head>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById('parent-list').addEventListener('click', function (e) {
+          console.log('click on e', e.target);
+        });
+      });
+    </script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test</title>
+</head>
+<body>
+  <ul id="parent-list">
+    <li id="post-1">Item 1</li>
+    <li id="post-2">Item 2</li>
+    <li id="post-3">Item 3</li>
+    <li id="post-4">Item 4</li>
+    <li id="post-5">Item 5</li>
+    <li id="post-6">Item 6</li>
+  </ul>
+</body>
+</html>

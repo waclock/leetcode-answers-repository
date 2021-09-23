@@ -1,7 +1,13 @@
-// https://leetcode.com/problems/merge-two-sorted-lists/
+// https://leetcode.com/problems/merge-two-sorted-lists/solution/
 
-// Input: l1 = [1, 2, 4], l2 = [1, 3, 4]
-// Output: [1, 1, 2, 3, 4, 4]
+class ListNode {
+  val: any;
+  next: ListNode;
+  constructor(val: any) {
+    this.val = val;
+    this.next = null;
+  }
+}
 
 /**
  * Definition for singly-linked list.
@@ -15,27 +21,56 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-const mergeTwoLists = function (l1: number[], l2: number[]): number[] {
-  let [idx1, idx2] = [0, 0];
-  const response = [];
-  // Orderly merge two arrays
-  while (idx1 < l1.length - 1 || idx2 < l2.length - 1) {
-    if (l1[idx1] < l2[idx2]) {
-      response.push(l1[idx1++]);
+// l1 = [-2,2,4,6]
+// l2 = [1,3,5,6,7]
+const mergeTwoLists = function (l1: ListNode, l2: ListNode): ListNode {
+  // maintain an unchanging reference to node ahead of the return node.
+  const prehead = new ListNode(-1);
+
+  let prev = prehead;
+  while (l1 != undefined && l2 != undefined) {
+    if (l1.val <= l2.val) {
+      prev.next = l1;
+      l1 = l1.next;
     } else {
-      response.push(l2[idx2++]);
+      prev.next = l2;
+      l2 = l2.next;
     }
+    prev = prev.next;
   }
-  // Store remaining elements of first array
-  while (idx1 < l1.length) response.push(l1[idx1++]);
 
-  // Store remaining elements of second array
-  while (idx2 < l2.length) response.push(l2[idx2++]);
+  // At least one of l1 and l2 can still have nodes at this point, so connect
+  // the non-null list to the end of the merged list.
+  prev.next = l1 == null ? l2 : l1;
 
-  return response;
+  return prehead.next;
 };
 
-const l1 = [1, 2, 4];
-const l2 = [1, 3, 4];
+// Initialize both lists
+const head1 = new ListNode(-2);
+const head2 = new ListNode(1);
 
-console.log(mergeTwoLists(l1, l2));
+const node2 = new ListNode(2);
+const node4 = new ListNode(4);
+const node6 = new ListNode(6);
+const node6_2 = new ListNode(6);
+const node3 = new ListNode(3);
+const node5 = new ListNode(5);
+const node7 = new ListNode(7);
+
+head1.next = node2;
+node2.next = node4;
+node4.next = node6;
+head2.next = node3;
+node3.next = node5;
+node5.next = node6_2;
+node6_2.next = node7;
+
+console.log(head1);
+let merged = mergeTwoLists(head1, head2);
+
+while (merged) {
+  console.log(merged.val);
+  merged = merged.next;
+}
+
